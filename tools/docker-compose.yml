@@ -10,6 +10,9 @@ services:
     ports:
       - 81:80
       - 444:443
+    volumes: 
+      - D:\Git\Echo.WebApi\Echo.WebApi\tools\:/config
+      
   proxy: 
     image: nginx:latest
     ports:

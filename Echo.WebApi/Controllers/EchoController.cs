@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Threading;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 
 namespace Echo.WebApi.Controllers
 {
@@ -11,10 +8,10 @@ namespace Echo.WebApi.Controllers
     [Route("[controller]")]
     public class EchoController : ControllerBase
     {
-
         [HttpGet]
         public IActionResult Get(string say)
         {
+            Thread.Sleep(20000);
             if (String.IsNullOrEmpty(say))
                 return Ok("hello");
             return Ok(say);
