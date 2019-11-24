@@ -18,7 +18,7 @@ namespace Echo.WebApi.Controllers
             //    c++;
             //}
             if (String.IsNullOrEmpty(say))
-                return Ok("hello");
+                return Ok("hello world");
             return Ok(say);
         }
     }
