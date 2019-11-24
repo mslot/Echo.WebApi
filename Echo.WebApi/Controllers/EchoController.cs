@@ -11,7 +11,7 @@ namespace Echo.WebApi.Controllers
         [HttpGet]
         public IActionResult Get(string say)
         {
-            Thread.Sleep(20000);
+            Thread.Sleep(TimeSpan.FromMinutes(5));
             if (String.IsNullOrEmpty(say))
                 return Ok("hello");
             return Ok(say);
