@@ -36,7 +36,7 @@
       "location": "[resourceGroup().location]",
       "properties": {
         "name": "[parameters('webSiteName')]",
-        "serverFarmId": "[resourceId('Microsoft.Web/serverFarms', parameters('webSiteName'))]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverFarms', parameters('hostingPlanName'))]",
         "siteConfig": {
           "linuxFxVersion": "DOCKER",
           "appSettings": [
@@ -59,9 +59,7 @@
             {
               "name": "DOCKER_REGISTRY_SERVER_PASSWORD",
               "value": "[listCredentials(resourceId('Microsoft.ContainerRegistry/registries',parameters('acrName')),'2017-03-01').passwords[0].value]"
-
             }
-
           ]
         }
       }
