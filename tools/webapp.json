@@ -1,0 +1,71 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "hostingPlanName": {
+      "type": "string"
+    },
+    "skuName": {
+      "type": "string",
+      "defaultValue": "B1"
+    },
+    "skuCapacity": {
+      "type": "string",
+      "defaultValue": "1"
+    },
+    "webSiteName": {
+      "type": "string"
+    },
+    "acrName": {
+      "type": "string"
+    },
+    "containerName": {
+      "type": "string"
+    },
+    "containerTag": {
+      "type": "string"
+    }
+  },
+  "variables": {},
+  "resources": [
+    {
+      "apiVersion": "2015-08-01",
+      "name": "[parameters('webSiteName')]",
+      "type": "Microsoft.Web/sites",
+      "kind": "app,linux,container",
+      "location": "[resourceGroup().location]",
+      "properties": {
+        "name": "[parameters('webSiteName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverFarms', parameters('webSiteName'))]",
+        "siteConfig": {
+          "linuxFxVersion": "DOCKER",
+          "appSettings": [
+            {
+              "name": "DOCKER_CUSTOM_IMAGE_NAME",
+              "value": "[concat(parameters('acrName'),'.azurecr.io/',parameters('containerName'),':',parameters('containerTag'))]"
+            },
+            {
+              "name": "WEBSITES_ENABLE_APP_SERVICE_STORAGE",
+              "value": "true"
+            },
+            {
+              "name": "DOCKER_REGISTRY_SERVER_URL",
+              "value": "[reference(resourceId('Microsoft.ContainerRegistry/registries',parameters('acrName')),'2019-05-01').loginServer]"
+            },
+            {
+              "name": "DOCKER_REGISTRY_SERVER_USERNAME",
+              "value": "[parameters('acrName')]"
+            },
+            {
+              "name": "DOCKER_REGISTRY_SERVER_PASSWORD",
+              "value": "[listCredentials(resourceId('Microsoft.ContainerRegistry/registries',parameters('acrName')),'2017-03-01').passwords[0].value]"
+
+            }
+
+          ]
+        }
+      }
+    }
+  ],
+  "outputs": {}
+}
