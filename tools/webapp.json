@@ -41,10 +41,6 @@
           "linuxFxVersion": "DOCKER",
           "appSettings": [
             {
-              "name": "test",
-              "value": "ing"
-            },
-            {
               "name": "DOCKER_CUSTOM_IMAGE_NAME",
               "value": "[concat(parameters('acrName'),'.azurecr.io/',parameters('containerName'),':',parameters('containerTag'))]"
             },
