@@ -36,8 +36,7 @@
       "type": "Microsoft.KeyVault/vaults/accessPolicies",
       "name": "[concat(parameters('kvName'), '/add')]",
       "dependsOn": [
-        "[parameters('webSiteName')]",
-        "[reference(resourceId('Microsoft.KeyVault/vaults',parameters('kvName')))]"
+        "[parameters('webSiteName')]"
       ],
       "apiVersion": "2018-02-14",
       "properties": {
@@ -89,8 +88,7 @@
             }
           ],
           "dependsOn": [
-            "[resourceId('Microsoft.Web/serverFarms', parameters('hostingPlanName'))]",
-            "[reference(resourceId('Microsoft.KeyVault/vaults',parameters('kvName')))]"
+            "[resourceId('Microsoft.Web/serverFarms', parameters('hostingPlanName'))]"
           ]
         }
       }
