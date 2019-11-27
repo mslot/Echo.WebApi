@@ -90,7 +90,7 @@
           ],
           "dependsOn": [
             "[resourceId('Microsoft.Web/serverFarms', parameters('hostingPlanName'))]",
-            "[resourceId('Microsoft.KeyVault/vaults',parameters('kvName')]"
+            "[resourceId('Microsoft.KeyVault/vaults',parameters('kvName'))]"
           ]
         }
       }
