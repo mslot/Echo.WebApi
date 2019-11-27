@@ -27,6 +27,12 @@
     },
     "kvName": {
       "type": "string"
+    },
+    "secretsPermissions": {
+      "type": "array",
+      "defaultValue": [
+        "list"
+      ]
     }
   },
   "variables": {},
