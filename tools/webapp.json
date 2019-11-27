@@ -37,7 +37,7 @@
       "name": "[concat(parameters('kvName'), '/add')]",
       "dependsOn": [
         "[parameters('webSiteName')]",
-        "[resourceId('Microsoft.KeyVault/vaults',parameters('kvName'))]"
+        "[reference(resourceId('Microsoft.KeyVault/vaults',parameters('kvName')))]"
       ],
       "apiVersion": "2018-02-14",
       "properties": {
@@ -90,7 +90,7 @@
           ],
           "dependsOn": [
             "[resourceId('Microsoft.Web/serverFarms', parameters('hostingPlanName'))]",
-            "[resourceId('Microsoft.KeyVault/vaults',parameters('kvName'))]"
+            "[reference(resourceId('Microsoft.KeyVault/vaults',parameters('kvName')))]"
           ]
         }
       }
