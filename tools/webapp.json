@@ -24,10 +24,34 @@
     },
     "containerTag": {
       "type": "string"
+    },
+    "kvName": {
+      "type": "string"
     }
   },
   "variables": {},
   "resources": [
+    //https://stackoverflow.com/questions/46278046/referencing-a-managed-service-identity-in-arm-template-deploy
+    {
+      "type": "Microsoft.KeyVault/vaults/accessPolicies",
+      "name": "[concat(parameters('kvName'), '/add')]",
+      "dependsOn": [
+        "[parameters('webSiteName')]",
+        "[resourceId('Microsoft.KeyVault/vaults',parameters('kvName')]"
+      ],
+      "apiVersion": "2018-02-14",
+      "properties": {
+        "accessPolicies": [
+          {
+            "tenantId": "[parameters('tenantId')]",
+            "objectId": "[reference(parameters('webSiteName'), '2015-08-31-PREVIEW').principalId]",
+            "permissions": {
+              "secrets": "[parameters('secretsPermissions')]"
+            }
+          }
+        ]
+      }
+    },
     {
       "apiVersion": "2015-08-01",
       "name": "[parameters('webSiteName')]",
@@ -65,7 +89,8 @@
             }
           ],
           "dependsOn": [
-            "[resourceId('Microsoft.Web/serverFarms', parameters('hostingPlanName'))]"
+            "[resourceId('Microsoft.Web/serverFarms', parameters('hostingPlanName'))]",
+            "[resourceId('Microsoft.KeyVault/vaults',parameters('kvName')]"
           ]
         }
       }
