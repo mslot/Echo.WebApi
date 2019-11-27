@@ -43,7 +43,7 @@
         "accessPolicies": [
           {
             "tenantId": "[subscription().tenantId]",
-            "objectId": "[reference(parameters('webSiteName'), '2017-08-01').principalId]",
+            "objectId": "[reference(parameters('webSiteName'), '2017-08-01','FULL').principalId]",
             "permissions": {
               "secrets": "[parameters('secretsPermissions')]"
             }
