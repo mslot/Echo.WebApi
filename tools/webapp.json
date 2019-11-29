@@ -37,7 +37,6 @@
   },
   "variables": {},
   "resources": [
-    //https://stackoverflow.com/questions/46278046/referencing-a-managed-service-identity-in-arm-template-deploy
     {
       "type": "Microsoft.KeyVault/vaults/accessPolicies",
       "name": "[concat(parameters('kvName'), '/add')]",

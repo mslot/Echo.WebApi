@@ -12,7 +12,7 @@ namespace Echo.WebApi.Controllers
         public IActionResult Get(string say)
         {
             if (String.IsNullOrEmpty(say))
-                return Ok("hello");
+                return Ok("hello what??!");
             return Ok(say);
         }
     }
