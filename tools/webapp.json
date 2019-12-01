@@ -31,7 +31,8 @@
     "secretsPermissions": {
       "type": "array",
       "defaultValue": [
-        "list"
+        "list",
+        "get"
       ]
     },
     "secret": {
@@ -76,7 +77,7 @@
           "appSettings": [
             {
               "name": "SECRET",
-              "value": "[parameters('secret')]"
+              "value": "[concat('@Microsoft.KeyVault(SecretUri=https://',parameters('kvName'),'.vault.azure.net/secrets/sqlserverPassword/)')]"
             },
             {
               "name": "DOCKER_CUSTOM_IMAGE_NAME",
