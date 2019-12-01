@@ -28,11 +28,7 @@ namespace Echo.WebApi
 
         public void ConfigureServices(IServiceCollection services)
         {
-            string secret = Configuration["SECRET"];
-
-            services.Configure<IOptions<Secret>>(options => {
-                options.Value.ClearText = secret;
-            });
+            services.AddOptions<Secret>().Configure(o => o.ClearText = Configuration["SECRET"]);
 
             services.AddControllers();
         }
