@@ -33,6 +33,9 @@
       "defaultValue": [
         "list"
       ]
+    },
+    "secret": {
+      "type": "string"
     }
   },
   "variables": {},
@@ -71,6 +74,10 @@
         "siteConfig": {
           "linuxFxVersion": "DOCKER",
           "appSettings": [
+            {
+              "name": "SECRET",
+              "value": "[parameters('secret')]"
+            },
             {
               "name": "DOCKER_CUSTOM_IMAGE_NAME",
               "value": "[concat(parameters('acrName'),'.azurecr.io/',parameters('containerName'),':',parameters('containerTag'))]"
