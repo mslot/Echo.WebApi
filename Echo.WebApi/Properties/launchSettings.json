@@ -23,7 +23,7 @@
       "launchUrl": "echo",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
-        "SECRET": "@Microsoft.KeyVault(SecretUri=https://keyvaulttesttemp3.vault.azure.net/secrets/sqlserverPassword/ffb72d78deca4bceb4788906c305263c)"
+        "SECRET": "Redacted"
       },
       "applicationUrl": "https://localhost:5001;http://localhost:5000"
     },
