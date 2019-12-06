@@ -71,7 +71,7 @@
         "accessPolicies": [
           {
             "tenantId": "[subscription().tenantId]",
-            "objectId": "[reference(concat(parameters('webSiteName'), '/staging'), '2017-08-01','FULL').identity.principalId]",
+            "objectId": "[reference(resourceId('Microsoft.Web/sites/slots',concat(parameters('webSiteName'), '/staging')), '2017-08-01','FULL').identity.principalId]",
             "permissions": {
               "secrets": "[parameters('secretsPermissions')]"
             }
