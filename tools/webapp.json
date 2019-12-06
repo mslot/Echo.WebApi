@@ -61,16 +61,34 @@
       }
     },
     {
-      "apiVersion": "2015-08-01",
-      "name": "[parameters('webSiteName')]",
-      "type": "Microsoft.Web/sites",
+      "type": "Microsoft.KeyVault/vaults/accessPolicies",
+      "name": "[concat(parameters('kvName'), '/add')]",
+      "dependsOn": [
+        "[concat(parameters('webSiteName'), '/staging')]"
+      ],
+      "apiVersion": "2018-02-14",
+      "properties": {
+        "accessPolicies": [
+          {
+            "tenantId": "[subscription().tenantId]",
+            "objectId": "[reference(concat(parameters('webSiteName'), '/staging'), '2017-08-01','FULL').identity.principalId]",
+            "permissions": {
+              "secrets": "[parameters('secretsPermissions')]"
+            }
+          }
+        ]
+      }
+    },
+     {
+      "apiVersion": "2016-08-01",
+      "type": "Microsoft.Web/sites/slots",
+      "name": "[concat(parameters('webSiteName'), '/staging')]",
       "kind": "app,linux,container",
       "location": "[resourceGroup().location]",
       "identity": {
         "type": "SystemAssigned"
       },
       "properties": {
-        "name": "[parameters('webSiteName')]",
         "serverFarmId": "[resourceId('Microsoft.Web/serverFarms', parameters('hostingPlanName'))]",
         "siteConfig": {
           "linuxFxVersion": "DOCKER",
@@ -104,6 +122,24 @@
             "[resourceId('Microsoft.Web/serverFarms', parameters('hostingPlanName'))]"
           ]
         }
+      },
+      "dependsOn": [
+        "[resourceId('Microsoft.Web/Sites', parameters('webSiteName'))]"
+      ]
+    },
+    {
+      "apiVersion": "2015-08-01",
+      "name": "[parameters('webSiteName')]",
+      "type": "Microsoft.Web/sites",
+      "kind": "app,linux,container",
+      "location": "[resourceGroup().location]",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "name": "[parameters('webSiteName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverFarms', parameters('hostingPlanName'))]",
+        "siteConfig": {}
       }
     }
   ],
