@@ -60,25 +60,25 @@
         ]
       }
     },
-    {
-      "type": "Microsoft.KeyVault/vaults/accessPolicies",
-      "name": "[concat(parameters('kvName'), '/add')]",
-      "dependsOn": [
-        "[concat(parameters('webSiteName'), '/staging')]"
-      ],
-      "apiVersion": "2018-02-14",
-      "properties": {
-        "accessPolicies": [
-          {
-            "tenantId": "[subscription().tenantId]",
-            "objectId": "[reference(resourceId('Microsoft.Web/sites/slots',concat(parameters('webSiteName'), '/staging')), '2017-08-01','FULL').identity.principalId]",
-            "permissions": {
-              "secrets": "[parameters('secretsPermissions')]"
-            }
-          }
-        ]
-      }
-    },
+    // {
+    //   "type": "Microsoft.KeyVault/vaults/accessPolicies",
+    //   "name": "[concat(parameters('kvName'), '/add')]",
+    //   "dependsOn": [
+    //     "[concat(parameters('webSiteName'), '/staging')]"
+    //   ],
+    //   "apiVersion": "2018-02-14",
+    //   "properties": {
+    //     "accessPolicies": [
+    //       {
+    //         "tenantId": "[subscription().tenantId]",
+    //         "objectId": "[reference(resourceId('Microsoft.Web/sites/slots',concat(parameters('webSiteName'), '/staging')), '2016-08-01','FULL').identity.principalId]",
+    //         "permissions": {
+    //           "secrets": "[parameters('secretsPermissions')]"
+    //         }
+    //       }
+    //     ]
+    //   }
+    // },
      {
       "apiVersion": "2016-08-01",
       "type": "Microsoft.Web/sites/slots",
