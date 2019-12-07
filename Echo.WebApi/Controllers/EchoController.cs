@@ -18,13 +18,14 @@ namespace Echo.WebApi.Controllers
         [HttpGet]
         public IActionResult Get(string say)
         {
+            Thread.Sleep(30000);
             if (String.IsNullOrEmpty(say))
                 return Ok("hello what??!");
             else if (say.Equals("secret"))
             {
                 return Ok($"Let me tell you a {_secret.Value.ClearText} <-- secret");
             }
-            return Ok(say + "new version");
+            return Ok(say + "new version version");
         }
     }
 }
