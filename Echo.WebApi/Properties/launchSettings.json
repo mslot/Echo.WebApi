@@ -22,9 +22,7 @@
       "launchBrowser": true,
       "launchUrl": "echo",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development",
-        "SECRET": "@Microsoft.KeyVault(SecretUri=https://keyvaulttesttemp3.vault.azure.net/secrets/sqlserverPassword/ffb72d78deca4bceb4788906c305263c)"
-      },
+        "ASPNETCORE_ENVIRONMENT": "Development"},
       "applicationUrl": "https://localhost:5001;http://localhost:5000"
     },
     "Docker": {
@@ -33,9 +31,7 @@
       "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/echo?say=secret",
       "environmentVariables": {
         "ASPNETCORE_URLS": "https://+:443;http://+:80",
-        "ASPNETCORE_HTTPS_PORT": "44343",
-        "SECRET": "@Microsoft.KeyVault(SecretUri=https://keyvaulttesttemp3.vault.azure.net/secrets/sqlserverPassword/ffb72d78deca4bceb4788906c305263c)"
-
+        "ASPNETCORE_HTTPS_PORT": "44343"
       },
       "httpPort": 55230,
       "useSSL": true,
