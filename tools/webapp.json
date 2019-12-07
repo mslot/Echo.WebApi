@@ -91,16 +91,16 @@
       "properties": {
         "serverFarmId": "[resourceId('Microsoft.Web/serverFarms', parameters('hostingPlanName'))]",
         "siteConfig": {
-          "linuxFxVersion": "DOCKER",
+          "linuxFxVersion": "[concat('DOCKER',concat(parameters('acrName'),'.azurecr.io/',parameters('containerName'),':',parameters('containerTag')))]",
           "appSettings": [
             {
               "name": "SECRET",
               "value": "[concat('@Microsoft.KeyVault(SecretUri=https://',parameters('kvName'),'.vault.azure.net/secrets/sqlserverPassword/)')]"
             },
-            {
-              "name": "DOCKER_CUSTOM_IMAGE_NAME",
-              "value": "[concat(parameters('acrName'),'.azurecr.io/',parameters('containerName'),':',parameters('containerTag'))]"
-            },
+            // {
+            //   "name": "DOCKER_CUSTOM_IMAGE_NAME",
+            //   "value": "[concat(parameters('acrName'),'.azurecr.io/',parameters('containerName'),':',parameters('containerTag'))]"
+            // },
             {
               "name": "WEBSITES_ENABLE_APP_SERVICE_STORAGE",
               "value": "true"
