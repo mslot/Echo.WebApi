@@ -24,7 +24,7 @@ namespace Echo.WebApi.Controllers
             {
                 return Ok($"Let me tell you a {_secret.Value.ClearText} <-- secret");
             }
-            return Ok(say + "new version version");
+            return Ok(say + " - testing sleeping");
         }
     }
 }
