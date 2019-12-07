@@ -10,10 +10,13 @@ namespace Echo.WebApi.Controllers
     public class EchoController : ControllerBase
     {
         private readonly IOptions<Secret> _secret;
+        private static DateTime timestamp;
 
         public EchoController(IOptions<Secret> secret)
         {
             _secret = secret;
+            if (timestamp == null)
+                timestamp = DateTime.Now;
         }
         [HttpGet]
         public IActionResult Get(string say)
@@ -24,7 +27,7 @@ namespace Echo.WebApi.Controllers
             {
                 return Ok($"Let me tell you a {_secret.Value.ClearText} <-- secret");
             }
-            return Ok(say + " - testing sleeping");
+            return Ok(say + " - " + timestamp);
         }
     }
 }

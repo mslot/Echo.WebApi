@@ -41,9 +41,6 @@ namespace Echo.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
-            Thread.Sleep(30000);
-            Console.WriteLine("Starting up");
-
             app.UseRouting();
 
             app.UseAuthorization();
