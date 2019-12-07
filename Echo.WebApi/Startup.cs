@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Threading.Tasks;
 using Echo.WebApi.Controllers;
 using Microsoft.AspNetCore.Builder;
@@ -39,6 +40,9 @@ namespace Echo.WebApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            Thread.Sleep(30000);
+            Console.WriteLine("Starting up");
 
             app.UseRouting();
 

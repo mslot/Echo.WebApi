@@ -14,7 +14,6 @@ namespace Echo.WebApi.Controllers
         public EchoController(IOptions<Secret> secret)
         {
             _secret = secret;
-            Thread.Sleep(30000);
         }
         [HttpGet]
         public IActionResult Get(string say)
