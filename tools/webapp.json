@@ -106,6 +106,10 @@
               "value": "true"
             },
             {
+              "name":"WEBSITE_ADD_SITENAME_BINDINGS_IN_APPHOST_CONFIG",
+              "value":"1"
+            },
+            {
               "name": "DOCKER_REGISTRY_SERVER_URL",
               "value": "[reference(resourceId('Microsoft.ContainerRegistry/registries',parameters('acrName')),'2019-05-01').loginServer]"
             },
