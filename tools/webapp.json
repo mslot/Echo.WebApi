@@ -143,7 +143,14 @@
       "properties": {
         "name": "[parameters('webSiteName')]",
         "serverFarmId": "[resourceId('Microsoft.Web/serverFarms', parameters('hostingPlanName'))]",
-        "siteConfig": {}
+        "siteConfig": {
+          "appSettings":[
+                        {
+              "name":"WEBSITE_ADD_SITENAME_BINDINGS_IN_APPHOST_CONFIG",
+              "value":"1"
+            }
+          ]
+        }
       }
     }
   ],
