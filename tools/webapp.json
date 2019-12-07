@@ -91,7 +91,7 @@
       "properties": {
         "serverFarmId": "[resourceId('Microsoft.Web/serverFarms', parameters('hostingPlanName'))]",
         "siteConfig": {
-          "linuxFxVersion": "[concat('DOCKER',concat(parameters('acrName'),'.azurecr.io/',parameters('containerName'),':',parameters('containerTag')))]",
+          "linuxFxVersion": "[concat('DOCKER|',concat(parameters('acrName'),'.azurecr.io/',parameters('containerName'),':',parameters('containerTag')))]",
           "appSettings": [
             {
               "name": "SECRET",
