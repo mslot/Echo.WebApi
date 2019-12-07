@@ -15,7 +15,7 @@ namespace Echo.WebApi.Controllers
         public EchoController(IOptions<Secret> secret)
         {
             _secret = secret;
-            if (timestamp == null)
+            if (timestamp == DateTime.MinValue)
                 timestamp = DateTime.Now;
         }
         [HttpGet]
