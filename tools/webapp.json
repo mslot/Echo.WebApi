@@ -97,10 +97,6 @@
               "name": "SECRET",
               "value": "[concat('@Microsoft.KeyVault(SecretUri=https://',parameters('kvName'),'.vault.azure.net/secrets/sqlserverPassword/)')]"
             },
-            // {
-            //   "name": "DOCKER_CUSTOM_IMAGE_NAME",
-            //   "value": "[concat(parameters('acrName'),'.azurecr.io/',parameters('containerName'),':',parameters('containerTag'))]"
-            // },
             {
               "name": "WEBSITES_ENABLE_APP_SERVICE_STORAGE",
               "value": "true"
@@ -144,36 +140,6 @@
         "name": "[parameters('webSiteName')]",
         "serverFarmId": "[resourceId('Microsoft.Web/serverFarms', parameters('hostingPlanName'))]",
         "siteConfig": {
-          "appSettings":[
-            {
-              "name": "SECRET",
-              "value": "[concat('@Microsoft.KeyVault(SecretUri=https://',parameters('kvName'),'.vault.azure.net/secrets/sqlserverPassword/)')]"
-            },
-            // {
-            //   "name": "DOCKER_CUSTOM_IMAGE_NAME",
-            //   "value": "[concat(parameters('acrName'),'.azurecr.io/',parameters('containerName'),':',parameters('containerTag'))]"
-            // },
-            {
-              "name": "WEBSITES_ENABLE_APP_SERVICE_STORAGE",
-              "value": "true"
-            },
-            {
-              "name":"WEBSITE_ADD_SITENAME_BINDINGS_IN_APPHOST_CONFIG",
-              "value":"1"
-            },
-            {
-              "name": "DOCKER_REGISTRY_SERVER_URL",
-              "value": "[reference(resourceId('Microsoft.ContainerRegistry/registries',parameters('acrName')),'2019-05-01').loginServer]"
-            },
-            {
-              "name": "DOCKER_REGISTRY_SERVER_USERNAME",
-              "value": "[parameters('acrName')]"
-            },
-            {
-              "name": "DOCKER_REGISTRY_SERVER_PASSWORD",
-              "value": "[listCredentials(resourceId('Microsoft.ContainerRegistry/registries',parameters('acrName')),'2017-03-01').passwords[0].value]"
-            }
-          ]
         }
       }
     }
